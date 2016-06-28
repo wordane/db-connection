@@ -94,7 +94,10 @@ if ($result = $mysqli->query($sql_fetch)) {
     
     if ($mysqlnd) {
         echo '\n mysqlnd enabled!';
-        /* numeric array */
+        /* numeric array
+         * Also use: $row = $result->fetch_all(MYSQLI_ASSOC)
+         * OR use : $row = $result->fetch_all(MYSQLI_BOTH)
+         */ 
         $rows = $result->fetch_all(MYSQLI_NUM);
         foreach( $rows as $row ){
           foreach( $row as $value ){
@@ -102,25 +105,18 @@ if ($result = $mysqli->query($sql_fetch)) {
           }
             printf ("\n");
         }
-   
-        /* associative array */
-        while($row = $result->fetch_all(MYSQLI_ASSOC))
-        printf ("%s (%s) (%s)\n", $row["name"], $row["age"], $row["job_title"]);
-
-        /* associative and numeric array */
-        while($row = $result->fetch_all(MYSQLI_BOTH))
-        printf ("%s (%s) (%s)\n", $row[0], $row["age"], $row[2]);
     } else {
         printf ("mysqlnd disabled \n");
         
         printf ("Trying as an numeric array \n ");
         while($row = $result->fetch_array())
         printf ("%s (%s) (%s)\n", $row[0], $row[1], $row[2]);
-
+        
+        // Optionally fetch each row as an associative array
         while($row = $result->fetch_assoc())
         printf ("Trying as an Associative array \n %s (%s) (%s)\n", $row["name"], $row["age"], $row["job_title"]);
 
-        /* associative and numeric array */
+        // Optionally fetch each row as an associative and numeric array
         while($row = $result->fetch_array(MYSQLI_BOTH))
         printf ("Trying both as numeric and associative array \n %s (%s) (%s)\n", $row[0], $row["age"], $row[2]);
     }
