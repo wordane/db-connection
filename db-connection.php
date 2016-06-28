@@ -40,6 +40,10 @@ class Database {
 	public function getConnection() {
 		return $this->_connection;
 	}
+    //closing the connection
+    public function destruct() {
+        $this->_connection->close();
+    }
 }
 
 $db = Database::getInstance();
@@ -127,5 +131,8 @@ if ($result = $mysqli->query($sql_fetch)) {
 } else {
     echo "Error \n" . mysqli_error($db);
 }
+
+// Closing DB connection
+$mysqli = $db->destruct(); 
 
 ?>
