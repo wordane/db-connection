@@ -54,7 +54,7 @@ $sql_query = "CREATE TABLE IF NOT EXISTS `exads_test` (".
     "`name` varchar(255) NOT NULL DEFAULT '',".
     "`age` int(2) UNSIGNED NOT NULL DEFAULT 0,".
     "`job_title` varchar(255) NOT NULL DEFAULT ''".
-    ");";
+    ")ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 
 // Running the query
 if ($mysqli->query($sql_query)) {
