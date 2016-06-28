@@ -60,7 +60,7 @@ $sql_query = "CREATE TABLE IF NOT EXISTS `exads_test` (".
 if ($mysqli->query($sql_query)) {
     echo "Table created.\n", $mysqli->affected_rows;
 } else {
-    echo "Error \n" . mysqli_error($db);
+    echo "Error \n" . mysqli_error($mysqli);
 }
 
 // Insert Query Sanitized Parameters 
@@ -74,7 +74,7 @@ $insert_query = "INSERT INTO exads_test VALUES ('$name', $age, '$job_title')";
 if ($mysqli->query($insert_query)) {
     printf("%d Row inserted.\n", $mysqli->affected_rows);
 } else {
-    echo "Error \n" . mysqli_error($db);
+    echo "Error \n" . mysqli_error($mysqli);
 }
 
 $sql_fetch  =   "SELECT name, age, job_title from `exads`.`exads_test`;";
@@ -123,7 +123,7 @@ if ($result = $mysqli->query($sql_fetch)) {
     
     
 } else {
-    echo "Error \n" . mysqli_error($db);
+    echo "Error \n" . mysqli_error($mysqli);
 }
 
 // Closing DB connection
