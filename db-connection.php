@@ -57,8 +57,6 @@ $sql_query = "CREATE TABLE IF NOT EXISTS `exads_test` (".
     ");";
 
 // Running the query
-$sql_query = $sql_query; 
-
 if ($mysqli->query($sql_query)) {
     echo "Table created.\n", $mysqli->affected_rows;
 } else {
@@ -94,7 +92,7 @@ if ($result = $mysqli->query($sql_fetch)) {
      */ 
     $mysqlnd = function_exists('mysqli_fetch_all');
     
-    if (!$mysqlnd) {
+    if ($mysqlnd) {
         echo '\n mysqlnd enabled!';
         /* numeric array */
         $rows = $result->fetch_all(MYSQLI_NUM);
